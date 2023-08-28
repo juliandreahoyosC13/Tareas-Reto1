@@ -26,7 +26,15 @@ function displayFooter() {
 }
 
 // Codigo DOM #1
-
+document.querySelector('.new-todo').addEventListener('keyup', (event) => {
+  if (
+    event.keyCode === 13 &&
+    document.querySelector('.new-todo').value.length > 0
+  ) {
+    const item = document.querySelector('.new-todo')
+    //Llamar la función que crea la tarea.**
+  }
+})
 // Codigo DOM #2
 
 // Codigo DOM #3
