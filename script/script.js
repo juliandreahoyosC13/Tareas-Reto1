@@ -36,7 +36,17 @@ document.querySelector('.new-todo').addEventListener('keyup', (event) => {
   }
 })
 // Codigo DOM #2
+// este fragmento permite conservar el estado del checkbox (true o false) en el localStorage
 
+function activateCheckboxListeners() {
+  const checkboxes = document.querySelectorAll('.toggle')
+  checkboxes.forEach((ch, i) => {
+    ch.addEventListener('click', () => {
+      itemsArray[i].checked = ch.checked
+      localStorage.setItem('items', JSON.stringify(itemsArray))
+    })
+  })
+}
 // Codigo DOM #3
 
 // Codigo DOM #4
