@@ -3,9 +3,9 @@
  de que la aplicación se cierre.*/
 function displayFooter() {
   let page = `      
-     
+      
       <footer class="footer">
-       
+        
         <span class="todo-count"><strong>${countPend()}</strong> pendiente(s)</span>
         
         <ul class="filters">
