@@ -33,8 +33,18 @@ document.querySelector('.new-todo').addEventListener('keyup', (event) => {
   ) {
     const item = document.querySelector('.new-todo')
     //Llamar la función que crea la tarea.**
+    addItem(item.value)
+  
   }
 })
+// funcion para guardar las tareas
+function addItem(name){
+  tasks.push({name:name, status:false, category:"casa" , priority:"alta"})
+  localStorage.setItem("tasks" , JSON.stringify(tasks))
+  
+ renderTasks()
+ window.location.reload()
+}
 // Codigo DOM #2
 // este fragmento permite conservar el estado del checkbox (true o false) en el localStorage
 
@@ -42,8 +52,9 @@ function activateCheckboxListeners() {
   const checkboxes = document.querySelectorAll('.toggle')
   checkboxes.forEach((ch, i) => {
     ch.addEventListener('click', () => {
-      itemsArray[i].checked = ch.checked
-      localStorage.setItem('items', JSON.stringify(itemsArray))
+      tasks[i].status = ch.checked
+      localStorage.setItem('tasks', JSON.stringify(tasks))
+      updatePendings()
     })
   })
 }
