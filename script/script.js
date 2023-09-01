@@ -102,6 +102,21 @@ function displayFooter() {
 // Codigo DOM #5
 
 // Codigo DOM #6
+
+function activateCancelListeners() {
+  const cancelBtn = document.querySelectorAll('.cancelBtn')
+  const updateController = document.querySelectorAll('.update-controller')
+  const inputs = document.querySelectorAll('.input-controller textarea')
+  cancelBtn.forEach((cB, i) => {
+    cB.addEventListener('click', () => {
+      updateController[i].style.display = 'none'
+      inputs[i].disabled = true
+      inputs[i].style.border = 'none'
+      window.location.reload()
+    })
+  })
+}
+
 // Esta es la lógica para el botón "cancelar" cuando presionas editar una tarea, inserta este código tal cual, el reto está en saber en qué parte de tu código debes usarlo.
 
 //El sistema debe permitir EDITAR o MODIFICAR una tarea.
