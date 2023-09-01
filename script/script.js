@@ -1,11 +1,77 @@
 /*TIPS: *No olvides utilizar el almacenamiento local (localStorage)
- para que las tareas queden guardadas en caso
- de que la aplicación se cierre.*/
+para que las tareas queden guardadas en caso
+de que la aplicación se cierre.*/
+
+let tasks = []
+
+if(localStorage.getItem("tasks")!=null){
+  tasks= JSON.parse(localStorage.getItem("tasks"))
+  renderTasks()
+  activateEditListeners()
+  activateCheckboxListeners()
+  activateDeleteListeners()
+  activateSaveListeners()
+  activateCancelListeners()
+  
+} 
+
+const countPend = () =>{
+  return tasks.filter(task=>!task.status).length
+
+}
+
+function updatePendings(){
+  document.querySelector(".todo-count").textContent = countPend()+ " pendiente(s)"
+}
+
+function showPend() {
+  const pendientes = document.querySelectorAll('.input-controller')
+  pendientes.forEach((element) => {
+    const check = element.querySelector('.toggle')
+    if (check.checked) {
+      element.style.display = 'none'
+    }
+    if (!check.checked) {
+      element.style.display = ''
+    }
+  })
+
+}
+
+function showComp() {
+  const completados = document.querySelectorAll('.input-controller')
+  completados.forEach((element) => {
+    const check = element.querySelector('.toggle')
+    if (!check.checked) {
+      element.style.display = 'none'
+    }
+    if (check.checked) {
+      element.style.display = ''
+    }
+  })
+  
+}
+
+function showAll() {
+  const all = document.querySelectorAll('.input-controller')
+  all.forEach((element) => {
+    const check = element.querySelector('.toggle')
+    element.style.display = ''
+  })
+  
+}
+function borrarCompletados() {
+  const completedTasks = tasks.filter((item) => !item.status  )
+
+  localStorage.setItem('tasks', JSON.stringify(completedTasks))
+  location.reload()
+}
+
 function displayFooter() {
   let page = `      
-     
+      
       <footer class="footer">
-       
+        
         <span class="todo-count"><strong>${countPend()}</strong> pendiente(s)</span>
         
         <ul class="filters">
@@ -120,7 +186,6 @@ function editTask(index, name){
 }
 
 // Codigo DOM #6
-// Esta es la lógica para el botón "cancelar" cuando presionas editar una tarea, inserta este código tal cual, el reto está en saber en qué parte de tu código debes usarlo.
 
 function activateCancelListeners() {
   const cancelBtn = document.querySelectorAll('.cancelBtn')
@@ -131,22 +196,13 @@ function activateCancelListeners() {
       updateController[i].style.display = 'none'
       inputs[i].disabled = true
       inputs[i].style.border = 'none'
+      window.location.reload()
     })
   })
 }
+
 // Esta es la lógica para el botón "cancelar" cuando presionas editar una tarea, inserta este código tal cual, el reto está en saber en qué parte de tu código debes usarlo.
-function activateCancelListeners() {
-  const cancelBtn = document.querySelectorAll('.cancelBtn')
-  const updateController = document.querySelectorAll('.update-controller')
-  const inputs = document.querySelectorAll('.input-controller textarea')
-  cancelBtn.forEach((cB, i) => {
-    cB.addEventListener('click', () => {
-      updateController[i].style.display = 'none'
-      inputs[i].disabled = true
-      inputs[i].style.border = 'none'
-    })
-  })
-}
+
 //El sistema debe permitir EDITAR o MODIFICAR una tarea.
 
 //El sistema debe permitir ELIMINAR una tarea.
