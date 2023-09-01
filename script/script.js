@@ -1,6 +1,72 @@
 /*TIPS: *No olvides utilizar el almacenamiento local (localStorage)
- para que las tareas queden guardadas en caso
- de que la aplicación se cierre.*/
+para que las tareas queden guardadas en caso
+de que la aplicación se cierre.*/
+
+let tasks = []
+
+if(localStorage.getItem("tasks")!=null){
+  tasks= JSON.parse(localStorage.getItem("tasks"))
+  renderTasks()
+  activateEditListeners()
+  activateCheckboxListeners()
+  activateDeleteListeners()
+  activateSaveListeners()
+  activateCancelListeners()
+  
+} 
+
+const countPend = () =>{
+  return tasks.filter(task=>!task.status).length
+
+}
+
+function updatePendings(){
+  document.querySelector(".todo-count").textContent = countPend()+ " pendiente(s)"
+}
+
+function showPend() {
+  const pendientes = document.querySelectorAll('.input-controller')
+  pendientes.forEach((element) => {
+    const check = element.querySelector('.toggle')
+    if (check.checked) {
+      element.style.display = 'none'
+    }
+    if (!check.checked) {
+      element.style.display = ''
+    }
+  })
+
+}
+
+function showComp() {
+  const completados = document.querySelectorAll('.input-controller')
+  completados.forEach((element) => {
+    const check = element.querySelector('.toggle')
+    if (!check.checked) {
+      element.style.display = 'none'
+    }
+    if (check.checked) {
+      element.style.display = ''
+    }
+  })
+  
+}
+
+function showAll() {
+  const all = document.querySelectorAll('.input-controller')
+  all.forEach((element) => {
+    const check = element.querySelector('.toggle')
+    element.style.display = ''
+  })
+  
+}
+function borrarCompletados() {
+  const completedTasks = tasks.filter((item) => !item.status  )
+
+  localStorage.setItem('tasks', JSON.stringify(completedTasks))
+  location.reload()
+}
+
 function displayFooter() {
   let page = `      
       
