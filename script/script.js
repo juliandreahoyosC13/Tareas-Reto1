@@ -52,7 +52,45 @@ function deleteTask(index){
 // Codigo DOM #4
 
 // Permite que la acción editar de las 2 listas desplegables "prioridad" y "categoría" impacte el DOM del HTML cuando cambies de opción, inserta este código tal cual, el reto está en saber en qué parte de tu código debes usarlo.
+function activateEditListeners() {
+  const editBtn = document.querySelectorAll('.editBtn')
+  const updateController = document.querySelectorAll('.update-controller')
+  const inputs = document.querySelectorAll('.input-controller textarea')
+  const prioritySelects = document.querySelectorAll(
+    '.edit-controller #priority'
+  )
+  const categorySelects = document.querySelectorAll(
+    '.edit-controller #category'
+  )
 
+  editBtn.forEach((eb, i) => {
+    eb.addEventListener('click', () => {
+      updateController[i].style.display = 'block'
+      inputs[i].disabled = false
+
+      prioritySelects.value = tasks[i].priority
+      categorySelects.value = tasks[i].category
+    })
+  })
+
+  prioritySelects.forEach((selectPriority,i)=>{
+    selectPriority.addEventListener('change', (event) => {
+      const selectedIndex = event.target.selectedIndex
+      tasks[i].priority = event.target.options[selectedIndex].text
+      localStorage.setItem('tasks', JSON.stringify(tasks))
+    })
+  
+  })
+  
+  categorySelects.forEach((selectCategory, i)=>{
+    
+    selectCategory.addEventListener('change', (event) => {
+      const selectedIndex = event.target.selectedIndex
+      tasks[i].category = event.target.options[selectedIndex].text
+      localStorage.setItem('tasks', JSON.stringify(tasks))
+    })
+  })
+}
 
 
 // Codigo DOM #5
