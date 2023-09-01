@@ -45,6 +45,52 @@ function addItem(name){
  renderTasks()
  window.location.reload()
 }
+
+function renderTasks(){
+  let html = ""
+
+    tasks.forEach(task =>{
+      html += `
+    <div class="item">
+                    <div class="input-controller">
+                      <input class="toggle" type="checkbox" id="check_0" ${task.status  ?"checked":""}>
+                      <textarea disabled="">${task.name}</textarea>
+                      <div class="edit-controller">
+                        <div>
+                          Prioridad
+                          <select id="priority" data-task="${task.name}">
+                            <option ${task.priority=="Alta"?"selected":""}>Alta</option>
+                            <option ${task.priority=="Media"?"selected":""}>Media</option> 
+                            <option ${task.priority=="Baja"?"selected":""}>Baja</option> 
+                          </select>
+                        </div>
+                        <div>
+                          Categorías
+                          <select id="category" data-task="${task.name}">
+                              <option ${task.category=="Casa"?"selected":""}>Casa</option> 
+                              <option ${task.category=="Trabajo"?"selected":""}>Trabajo</option> 
+                              <option ${task.category=="Emprendimiento"?"selected":""}>Emprendimiento</option> 
+                            </select>
+                        </div>
+                        <i class="fa-solid fa-pen-to-square editBtn"></i>
+                        <i class="fa-solid fa-x deleteBtn"></i>
+                      </div>
+                    </div>
+                    <div class="update-controller">
+                    <button class="saveBtn">Save</button>
+                     <button class="cancelBtn">Cancel</button>
+                    </div>
+                  </div>
+    `
+    
+    });
+    
+
+ 
+
+  
+  document.querySelector(".todo-list").innerHTML = html
+}
 // Codigo DOM #2
 // este fragmento permite conservar el estado del checkbox (true o false) en el localStorage
 
