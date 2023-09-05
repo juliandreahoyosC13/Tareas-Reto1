@@ -84,6 +84,7 @@ function displayFooter() {
           <li>
             <a onclick="showComp()" class="filtro" href="#/completed">Completados</a>
           </li>
+          
         </ul>
         <button onclick="borrarCompletados()" id="clear-completed" class="clear-completed">Borrar completados</button>
       </footer>

@@ -286,6 +286,7 @@ body {
 
 .clear-completed,
 html .clear-completed:active {
+  left: 1.5rem;
   float: right;
   position: relative;
   line-height: 20px;
