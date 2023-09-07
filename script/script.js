@@ -84,7 +84,6 @@ function displayFooter() {
           <li>
             <a onclick="showComp()" class="filtro" href="#/completed">Completados</a>
           </li>
-          
         </ul>
         <button onclick="borrarCompletados()" id="clear-completed" class="clear-completed">Borrar completados</button>
       </footer>
@@ -104,21 +103,8 @@ document.querySelector('.new-todo').addEventListener('keyup', (event) => {
   
   }
 })
-// funcion para guardar las tareas
+// funcion para guardar las tareas.
 function addItem(name){
- Javier.Dom5
-  name = name.trim();
-  if (name !== "") {
-    tasks.push({ name: name, status: false, category: "casa", priority: "alta" });
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    
-    renderTasks();
-    window.location.reload();
-  } else {
-  
-    alert("El nombre de la tarea no puede estar en blanco.");
-  }
-  
   tasks.push({name:name, status:false, category:"casa" , priority:"alta"})
   localStorage.setItem("tasks" , JSON.stringify(tasks))
   
@@ -167,9 +153,9 @@ function renderTasks(){
     
 
  
+
   
   document.querySelector(".todo-list").innerHTML = html
- main
 }
 // Codigo DOM #2
 // este fragmento permite conservar el estado del checkbox (true o false) en el localStorage
@@ -250,23 +236,27 @@ function activateEditListeners() {
 
 // Codigo DOM #5
 
-// Codigo DOM #6
+// Permite que la acción guardar el nuevo nombre de la tarea cuando decides editar y que impacte el DOM del HTML, acá debes agegar algoritmo de actualizar tarea
 
-function activateCancelListeners() {
-  const cancelBtn = document.querySelectorAll('.cancelBtn')
-  const updateController = document.querySelectorAll('.update-controller')
+
+function activateSaveListeners() {
+  const saveBtn = document.querySelectorAll('.saveBtn')
   const inputs = document.querySelectorAll('.input-controller textarea')
-  cancelBtn.forEach((cB, i) => {
-    cB.addEventListener('click', () => {
-      updateController[i].style.display = 'none'
-      inputs[i].disabled = true
-      inputs[i].style.border = 'none'
-      window.location.reload()
+  saveBtn.forEach((sB, i) => {
+    sB.addEventListener('click', () => {
+      // Llamar la función que guarda la actualización la tarea
+      editTask(i,inputs[i].value)
     })
   })
 }
+// funcion editar las tareas 
+function editTask(index, name){
+  tasks[index].name = name
+  localStorage.setItem('tasks', JSON.stringify(tasks))
+  window.location.reload()
+}
 
-// Esta es la lógica para el botón "cancelar" cuando presionas editar una tarea, inserta este código tal cual, el reto está en saber en qué parte de tu código debes usarlo.
+// Codigo DOM #6
 
 function activateCancelListeners() {
   const cancelBtn = document.querySelectorAll('.cancelBtn')
