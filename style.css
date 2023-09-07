@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Gloria+Hallelujah&display=swap');
+
+*{
+  font-family: 'Coming Soon', cursive;
+font-family: 'Gloria Hallelujah', cursive;
+}
+
 html,
 body {
   margin: 0;
@@ -69,7 +76,7 @@ body {
   font-size: 80px;
   font-weight: 200;
   text-align: center;
-  color: #b83f45;
+  color: #450ae7;
   -webkit-text-rendering: optimizeLegibility;
   -moz-text-rendering: optimizeLegibility;
   text-rendering: optimizeLegibility;
@@ -279,6 +286,7 @@ body {
 
 .clear-completed,
 html .clear-completed:active {
+  left: 1.5rem;
   float: right;
   position: relative;
   line-height: 20px;
@@ -332,7 +340,7 @@ html .clear-completed:active {
   line-height: 1.4;
   color: black;
   border-radius: 10px;
-  background-color: transparent;
+  background-color: transparent white;
   font-size: 1.2rem;
   font-family: inherit;
   transition: all 0.3s ease-in-out;
@@ -380,7 +388,7 @@ textarea:focus {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(31, 152, 222, 0.3);
   border-radius: 10px;
   padding: 8px;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
